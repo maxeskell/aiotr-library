@@ -79,3 +79,11 @@ cp -r /tmp/<skill-name>-public aiotr-library/skills/<skill-name>
 ```
 
 Eventually a `promote-skill` skill should automate this. PRs welcome.
+
+## Docs hygiene
+
+When you add or change a skill, schedule, or instruction, update the
+inventory table in the relevant bucket's `README.md` and (if the change
+affects the repo's overall shape) this `CLAUDE.md` plus the top-level
+`README.md` — in the same commit. Stale inventory tables are the most
+common doc rot here.
