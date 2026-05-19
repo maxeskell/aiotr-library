@@ -1,6 +1,6 @@
 # instruction-template-name
 
-One sentence — what problem this template solves.
+One sentence, what problem this template solves.
 
 ## When to use this
 

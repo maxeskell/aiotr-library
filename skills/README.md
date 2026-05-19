@@ -19,7 +19,7 @@ available via `/<skill-name>` or by description-match.
 
 | Skill | What it does | Status |
 | --- | --- | --- |
-| _(none yet — promotions coming from `aiotr-os/personal/skills/`)_ | | |
+| _(none yet, promotions coming from `aiotr-os/personal/skills/`)_ | | |
 
 ## Skill folder shape
 

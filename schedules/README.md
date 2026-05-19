@@ -1,6 +1,6 @@
 # schedules/
 
-Claude Code `/loop` schedules — recurring prompts that run on a cadence.
+Claude Code `/loop` schedules, recurring prompts that run on a cadence.
 Useful for monitoring, weekly reviews, polling for state changes.
 
 ## What is a schedule?
@@ -20,7 +20,7 @@ This folder collects ready-made schedules worth running.
 
 ## Install
 
-Schedules are just markdown — each folder documents what the schedule
+Schedules are just markdown, each folder documents what the schedule
 does, what cadence to run it at, and what to expect.
 
 To use one: read its README, then run the `/loop` invocation it

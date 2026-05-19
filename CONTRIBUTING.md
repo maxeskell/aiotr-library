@@ -1,17 +1,17 @@
 # Contributing
 
 Thanks for considering a contribution. This library is small and
-opinionated — the bar is "would I want this in my own setup?" rather
+opinionated, the bar is "would I want this in my own setup?" rather
 than "is this technically correct?".
 
 ## Before you open a PR
 
-1. **Check the bucket** — is this a skill, a schedule, or an
+1. **Check the bucket**, is this a skill, a schedule, or an
    instruction? See `CLAUDE.md` for definitions.
 2. **Copy the right `_template/`** and fill it in.
 3. **Use it for real, for at least a week.** If you haven't actually
    run it yourself, it's not ready.
-4. **Redact** — see `CLAUDE.md` "Redaction rules". No real names, real
+4. **Redact**, see `CLAUDE.md` "Redaction rules". No real names, real
    emails, real Stripe IDs, real client workflows.
 5. **Add an inventory entry** to the relevant bucket's `README.md`.
 
@@ -26,11 +26,11 @@ than "is this technically correct?".
 ❌ One-shot novelties or jokes
 ❌ Anything that depends on private data only you have access to
 ❌ Skills that wrap a single existing tool with no added value
-❌ Things still under active iteration — keep iterating privately first
+❌ Things still under active iteration, keep iterating privately first
 
 ## PR format
 
-Title: `<bucket>: add <name>` — e.g. `skills: add meeting-prep`
+Title: `<bucket>: add <name>`, e.g. `skills: add meeting-prep`
 
 Body should answer:
 - What problem does this solve?

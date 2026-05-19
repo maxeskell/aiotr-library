@@ -1,12 +1,12 @@
 ---
 name: skill-name
-description: One sentence — what this skill does, when to use it. Claude reads this to decide whether to invoke. Be specific about triggers.
+description: One sentence, what this skill does, when to use it. Claude reads this to decide whether to invoke. Be specific about triggers.
 ---
 
 # skill-name
 
 One paragraph: the problem this solves, in plain terms. Not the
-mechanics — the user-facing outcome.
+mechanics, the user-facing outcome.
 
 ## When to use this skill
 
@@ -28,11 +28,11 @@ with its tools.
 
 ## Inputs
 
-- `<arg>` (optional) — what it's for, what happens if omitted
+- `<arg>` (optional), what it's for, what happens if omitted
 
 ## Output
 
-What the user sees when this skill finishes. Be concrete — paste
+What the user sees when this skill finishes. Be concrete, paste
 a real example if you have one.
 
 ```

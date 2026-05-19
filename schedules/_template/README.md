@@ -1,6 +1,6 @@
 # schedule-name
 
-One sentence — what this schedule monitors or does on a recurring basis.
+One sentence, what this schedule monitors or does on a recurring basis.
 
 ## Cadence
 

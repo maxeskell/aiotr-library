@@ -1,13 +1,13 @@
-# aiotr-library — repo conventions
+# aiotr-library: repo conventions
 
 Public library of Claude Code skills, schedules, and instructions.
 Anyone running Claude Code can pull from here.
 
 ## Relationship to other repos
 
-- **`aiotr-os`** (private) — Max's personal OS, where skills are
+- **`aiotr-os`** (private), Max's personal OS, where skills are
   *grown* in real engagements. Skills earn their way here.
-- **`aiotr-site`** (public, `aiotr.org`) — marketing surface that
+- **`aiotr-site`** (public, `aiotr.org`), marketing surface that
   links to this library and tells the story of how the skills are used.
 
 The **promotion path** is one-way: personal → public. Never the
@@ -19,7 +19,7 @@ of client specifics and submitted here.
 ```
 aiotr-library/
 ├── skills/         # Claude Code skills (one folder per skill, each with SKILL.md)
-├── schedules/      # /loop schedules — recurring prompts
+├── schedules/      # /loop schedules, recurring prompts
 └── instructions/   # CLAUDE.md fragments, project-level instruction templates
 ```
 
@@ -51,8 +51,8 @@ A skill, schedule, or instruction belongs here if:
 - It has a **clear name** and a **one-line description** of what it does
 - It includes a **usage example** showing what good output looks like
 
-A skill does NOT belong here if it's still under active iteration —
-keep iterating in `aiotr-os/personal/skills/` first.
+A skill does NOT belong here if it's still under active iteration.
+Keep iterating in `aiotr-os/personal/skills/` first.
 
 ## File conventions
 
@@ -68,7 +68,7 @@ keep iterating in `aiotr-os/personal/skills/` first.
 # In aiotr-os: copy the skill to a scratch location
 cp -r personal/skills/<skill-name> /tmp/<skill-name>-public
 
-# Edit /tmp/<skill-name>-public/SKILL.md — redact per rules above
+# Edit /tmp/<skill-name>-public/SKILL.md, redact per rules above
 
 # Drop the cleaned version into this repo
 cp -r /tmp/<skill-name>-public aiotr-library/skills/<skill-name>
@@ -85,5 +85,36 @@ Eventually a `promote-skill` skill should automate this. PRs welcome.
 When you add or change a skill, schedule, or instruction, update the
 inventory table in the relevant bucket's `README.md` and (if the change
 affects the repo's overall shape) this `CLAUDE.md` plus the top-level
-`README.md` — in the same commit. Stale inventory tables are the most
+`README.md`, in the same commit. Stale inventory tables are the most
 common doc rot here.
+
+## Voice and tone rules
+
+These apply to every word that ships in this repo: SKILL.md files,
+templates, READMEs, commit messages, PR bodies. Also to chat replies
+in sessions working in this codebase.
+
+**No em-dashes. Full stop.** If you reach for one, rewrite with a
+comma, semicolon, colon, or a fresh sentence. Replace existing em-dashes
+when you touch nearby code.
+
+**Banned phrases** (do not output, in any context):
+
+> "let me", "I'll", "I will", "happy to help", "great question",
+> "absolutely", "certainly", "of course", "in conclusion",
+> "to summarise" / "to summarize", "in summary", "I hope this helps",
+> "feel free to", "don't hesitate", "it's important to note",
+> "please note", "kindly", "I think", "I believe", "perhaps", "maybe",
+> "somewhat", "very", "really", "quite", "extremely",
+> "let's dive in", "let's get started", "moving on", "as an AI",
+> "as a language model", "I'm just".
+
+**Banned vocabulary**:
+
+> delve, navigate, leverage, utilise / utilize, robust, harness,
+> unlock, unleash, realm, tapestry, underscore, showcase, elevate,
+> embark, synergy, streamline, multifaceted, holistic, intricate,
+> comprehensive, seamlessly, meticulous, endeavor / endeavour.
+
+Avoid hedging, marketing register, AI-narration, and filler intensifiers.
+State things directly.
