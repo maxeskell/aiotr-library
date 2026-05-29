@@ -7,8 +7,8 @@ Anyone running Claude Code can pull from here.
 
 - **`aiotr-os`** (private), Max's personal OS, where skills are
   *grown* in real engagements. Skills earn their way here.
-- **`aiotr-site`** (public, `aiotr.org`), marketing surface that
-  links to this library and tells the story of how the skills are used.
+- **`codeready-site`** (public, `aiotr.org`), the site that links to
+  this library and tells the story of how the skills are used.
 
 The **promotion path** is one-way: personal → public. Never the
 reverse. Public templates that worked in real engagements get cleaned
