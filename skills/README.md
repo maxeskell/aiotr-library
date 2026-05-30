@@ -17,18 +17,19 @@ available via `/<skill-name>` or by description-match.
 
 ## Inventory
 
-All skills below ship in **template form**: the portable shape with `{{PLACEHOLDER}}`
-tokens you fill in for your own stack (KB system, analytics tool, etc.). Each `SKILL.md`
-lists its placeholders up top; its `README.md` explains the design patterns. Fill the
-placeholders before use. These are starting points to adapt, not zero-config drop-ins.
+Each skill below is a complete, working `SKILL.md` with a worked example built on fictional
+data (a made-up company, Acme, on an illustrative stack: Notion, Granola, Slack, Jira,
+Mixpanel). Read the example to see the skill run, then swap the named tools for your own.
+The patterns travel; the specific tool names are illustrative, not requirements. Each skill's
+`README.md` explains the design patterns behind it.
 
 | Skill | What it does | Status |
 | --- | --- | --- |
-| [`decision-log`](./decision-log) | Capture and review significant decisions with their *why*, so they don't get re-litigated. | Template |
-| [`doc-triage`](./doc-triage) | Four-check rubric (Clarity, Evidence, Owner/next step, LLM-tell) for whether a doc is ready to circulate. | Template |
-| [`end-of-day-review`](./end-of-day-review) | Close out the workday in ~10 min: what mattered, what's owed, three things for tomorrow. | Template |
-| [`weekly-self-reflection`](./weekly-self-reflection) | Evidence-based weekly review that also extracts decisions and proposes KB updates. | Template |
-| [`meeting-prep`](./meeting-prep) | Pull live context into a tight briefing before any named meeting. | Template |
+| [`decision-log`](./decision-log) | Capture and review significant decisions with their *why*, so they don't get re-litigated. | Working + example |
+| [`doc-triage`](./doc-triage) | Four-check rubric (Clarity, Evidence, Owner/next step, LLM-tell) for whether a doc is ready to circulate. | Working + example |
+| [`end-of-day-review`](./end-of-day-review) | Close out the workday in ~10 min: what mattered, what's owed, three things for tomorrow. | Working + example |
+| [`weekly-self-reflection`](./weekly-self-reflection) | Evidence-based weekly review that also extracts decisions and proposes KB updates. | Working + example |
+| [`meeting-prep`](./meeting-prep) | Pull live context into a tight briefing before any named meeting. | Working + example |
 
 ## Skill folder shape
 
