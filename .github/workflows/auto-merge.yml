@@ -1,0 +1,32 @@
+name: Auto-merge owner PRs
+
+# Why this exists: PRs opened by the repo owner (e.g. Claude Code on the
+# claude/* branches) should land without a manual merge step. This runs
+# server-side on GitHub, so it works in every session and with no session
+# at all. It does NOT auto-merge PRs from outside contributors.
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    # Only the repo owner's own, non-draft PRs. Guards public repos against
+    # auto-merging external contributions.
+    if: >-
+      github.event.pull_request.author_association == 'OWNER' &&
+      github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable auto-merge (wait for required checks), else merge now
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.html_url }}
+        # --auto waits for required status checks IF the repo has
+        # "Allow auto-merge" enabled and checks exist; otherwise the
+        # fallback merges immediately. Upgrades itself once you add CI.
+        run: gh pr merge --auto --merge "$PR" || gh pr merge --merge "$PR"

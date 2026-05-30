@@ -129,3 +129,11 @@ when you touch nearby code.
 
 Avoid hedging, marketing register, AI-narration, and filler intensifiers.
 State things directly.
+
+## Merging PRs
+
+PRs opened by the repo owner are auto-merged server-side by
+`.github/workflows/auto-merge.yml` (merge-commit) once mergeable. You do not
+need to merge owner PRs by hand, and you do not need to ask. Open them
+non-draft when ready; the workflow takes it from there. External-contributor
+PRs are never auto-merged.
