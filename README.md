@@ -14,6 +14,7 @@ box, copy a folder, drop it in your config, run it.
 | [`skills/`](./skills) | Claude Code skills, drop into `~/.claude/skills/` to install |
 | [`schedules/`](./schedules) | `/loop` schedules, recurring prompts you can run on a cadence |
 | [`instructions/`](./instructions) | `CLAUDE.md` fragments and project instruction templates |
+| [`essays/`](./essays) | The design layer: why the patterns are shaped the way they are |
 
 Each folder has its own README with install instructions and an
 inventory of what's available.
@@ -37,9 +38,14 @@ This repo is the public half of a larger setup:
 
 - [`aiotr.org`](https://aiotr.org), the marketing site, with writeups
   about how these skills get used in real engagements
-- `aiotr-os` (private), the personal operating system this library is
-  promoted *from*. Skills earn their place here after being useful in
-  real work for a few weeks.
+- `aiotr-os` (private), the personal operating system where skills are
+  grown in real engagements. Skills earn their place here after being
+  useful in real work for a few weeks.
+- [`maxeskell-personal-ai-operating-system`](https://github.com/maxeskell/maxeskell-personal-ai-operating-system)
+  (public), the reference-design repo: generic templates, the essays
+  mirrored here, and the blog drafts. The portable templates in this
+  library come from there; the private `aiotr-os` is where they were
+  proven first.
 
 ## Contributing
 

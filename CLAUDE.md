@@ -7,12 +7,18 @@ Anyone running Claude Code can pull from here.
 
 - **`aiotr-os`** (private), Max's personal OS, where skills are
   *grown* in real engagements. Skills earn their way here.
+- **`maxeskell-personal-ai-operating-system`** (public), the
+  reference-design repo: generic templates, the essays, and blog
+  drafts. The portable templates in this library come from there once
+  they have been proven in `aiotr-os`.
 - **`codeready-site`** (public, `aiotr.org`), the site that links to
   this library and tells the story of how the skills are used.
 
-The **promotion path** is one-way: personal → public. Never the
-reverse. Public templates that worked in real engagements get cleaned
-of client specifics and submitted here.
+The **promotion path** is one-way: private to public. Never the
+reverse. Templates that worked in real engagements get cleaned of
+client specifics, brought into voice compliance, and submitted here.
+A skill is proven in `aiotr-os`; its portable template form lives in
+the reference-design repo; the vetted copy lands here.
 
 ## Layout
 
@@ -20,11 +26,13 @@ of client specifics and submitted here.
 aiotr-library/
 ├── skills/         # Claude Code skills (one folder per skill, each with SKILL.md)
 ├── schedules/      # /loop schedules, recurring prompts
-└── instructions/   # CLAUDE.md fragments, project-level instruction templates
+├── instructions/   # CLAUDE.md fragments, project-level instruction templates
+└── essays/         # the design layer: prose explainers behind the patterns
 ```
 
-Each bucket has a `_template/` showing the expected shape. New
-contributions copy the template and fill it in.
+Each bucket has a `_template/` showing the expected shape (except
+`essays/`, which holds prose explainers rather than fill-in templates).
+New contributions copy the template and fill it in.
 
 ## Redaction rules (non-negotiable)
 
@@ -68,7 +76,10 @@ Keep iterating in `aiotr-os/personal/skills/` first.
 # In aiotr-os: copy the skill to a scratch location
 cp -r personal/skills/<skill-name> /tmp/<skill-name>-public
 
-# Edit /tmp/<skill-name>-public/SKILL.md, redact per rules above
+# Edit /tmp/<skill-name>-public/SKILL.md: redact per rules above, AND bring it
+# into voice compliance (no em-dashes, no banned phrases or vocabulary). Source
+# skills grown in aiotr-os / the reference-design repo use em-dashes freely; this
+# repo does not, so the voice pass is a required promotion step, not optional.
 
 # Drop the cleaned version into this repo
 cp -r /tmp/<skill-name>-public aiotr-library/skills/<skill-name>
