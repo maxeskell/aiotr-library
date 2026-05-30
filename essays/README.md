@@ -31,3 +31,7 @@ These essays document the patterns behind the public
 [reference-design repo](https://github.com/maxeskell/maxeskell-personal-ai-operating-system).
 Links inside the essays that point at specific skills or instruction files
 resolve to that repo, where the worked implementations live.
+
+These copies are canonical. The reference-design repo's `drafts/essays/`
+holds pointer stubs back here, so the essays have exactly one editable home,
+which is the rule [essay 02](02-canonical-home-rule.md) argues for.
