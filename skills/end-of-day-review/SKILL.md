@@ -12,35 +12,7 @@ description: >
   writer of `chosen` items.
 ---
 
-# End of Day Review: Template
-
-> Template. Replace every `{{PLACEHOLDER}}` with your own context. A worked example is in
-> [SKILL.example.md](SKILL.example.md). For design patterns, see [README.md](README.md).
-
-## Placeholders used in this template
-
-| Placeholder | What to put here | Example values |
-|---|---|---|
-| `{{KB_SYSTEM}}` | Your knowledge base. | "Slite", "Notion", "Confluence" |
-| `{{SKILL_INDEX_LOCATION}}` | Your skill registry. | "the Personal Skill Index note in {{KB_SYSTEM}}" |
-| `{{KB_INDEX_LOCATION}}` | The routing table that maps content categories to note locations. | "the KB index note in {{KB_SYSTEM}}" |
-| `{{PERSONAL_CHANNEL_LOCATION}}` | Where working drafts and EOD notes land. | "your personal channel in {{KB_SYSTEM}}" |
-| `{{ARCHIVE_PARENT_LOCATION}}` | Where dated EOD notes are written. | "the EOD archive parent under your personal channel" |
-| `{{OPEN_ITEMS_TRACKER_LOCATION}}` | Where the Open Items Tracker lives. | "the Open Items Tracker note in {{KB_SYSTEM}}" |
-| `{{DECISION_LOG_LOCATION}}` | Your decision log. | "the Decision Log note in {{KB_SYSTEM}}" |
-| `{{ORG_REFERENCE_LOCATION}}` | The Area / Person mapping. | "the Org & People note in {{KB_SYSTEM}}" |
-| `{{MEETING_NOTES_SYSTEM}}` | Where your meeting summaries live. | "Granola", "Otter", "manual notes" |
-| `{{CHAT_TOOL}}` | Your team chat tool. | "Slack", "Teams", "Discord" |
-| `{{USER_CHAT_HANDLE}}` | The user's chat handle for outbound message search. | e.g., `from:<@USER_ID>` |
-| `{{TICKETING_SYSTEM}}` | Your delivery / ticketing system. | "Jira", "Linear", "GitHub Issues" |
-| `{{MISSION_TERM}}` | Whatever you call portfolio-level strategic priorities. | "mission", "bet", "initiative" |
-| `{{KB_PROPOSAL_QUEUE_LOCATION}}` | (Optional) Your KB proposal queue, if you use a Cat-A/B/C write discipline. | "the KB Proposal Queue note", or "n/a if you write directly" |
-| `{{KB_CHANGELOG_LOCATION}}` | Where structural KB changes are logged. | "the KB Changelog note in {{KB_SYSTEM}}" |
-| `{{OUTPUT_STANDARDS_REFERENCE}}` | Where your output axioms live. | "the Skill Output Standards note in {{KB_SYSTEM}}" |
-
----
-
-## What This Does
+# End of Day Review
 
 A short, weekday evening pass that:
 
@@ -53,10 +25,15 @@ A short, weekday evening pass that:
 
 Feeds the Sunday weekly-self-reflection. Never a replacement for it.
 
+> The stack named below is illustrative: Notion as the KB (holding the Open Items Tracker,
+> Decision Log, Org and People note, and the skill index), Granola for meeting notes, Slack
+> for chat, Jira for tickets. Swap these for your own. The provenance model (chosen /
+> committed / captured), the aging rules, and the three-section output are the portable
+> parts. The proposal-queue step (3.5) is optional and only applies if you run a Cat-A/B/C
+> KB write discipline.
+
 EOD is the only writer of `chosen` provenance. Other skills and EOD's own captured-pass
 write `committed` or `captured`. The three are neutral, not hierarchical.
-
----
 
 ## Step 0: Fetch Indexes (Mandatory)
 
@@ -64,15 +41,13 @@ Before anything else, fetch both indexes. All other note IDs, archive parents, a
 references are resolved from these. Do not hardcode anything except the two index note IDs
 and the personal channel location.
 
-1. Fetch {{SKILL_INDEX_LOCATION}}. Store: Skill Run Log location, archive parent (if defined
-   there; if absent, use {{PERSONAL_CHANNEL_LOCATION}} directly), any config values.
-2. Fetch {{KB_INDEX_LOCATION}}. Store: {{DECISION_LOG_LOCATION}}, {{ORG_REFERENCE_LOCATION}},
-   chat-tool channel references.
+1. Fetch the skill index note in Notion. Store: Skill Run Log location, archive parent (if
+   defined there; if absent, use the personal channel directly), any config values.
+2. Fetch the KB index note in Notion. Store: Decision Log location, Org and People note
+   location, Slack channel references.
 
 If either index fetch fails, stop and tell the user: "Cannot run EOD, [index name]
-unreachable. Confirm {{KB_SYSTEM}} connection and retry."
-
----
+unreachable. Confirm Notion connection and retry."
 
 ## Step 1: Day-of-Week Gate
 
@@ -83,8 +58,6 @@ Determine today's day-of-week in the user's local timezone.
 - **Saturday or Sunday:** stop. Reply: "EOD runs Mon-Fri. Sunday's weekly-self-reflection
   covers the week and the Monday briefing picks up from there. If something is genuinely
   urgent, trigger with the urgent flag to run urgent-only mode against the queue."
-
----
 
 ## Step 1.5: Backfill Mode (One-Off)
 
@@ -99,8 +72,6 @@ existing tracker items by provenance the first time the new structure lands.
 3. Present a single batch for the user to confirm overrides or accept defaults.
 4. Apply, write the tracker once, output one-line confirmation. Do not write a dated EOD
    note. Do not run any other steps.
-
----
 
 ## Step 2: Anchor Input (Parallel With Retrieval)
 
@@ -123,8 +94,6 @@ evidence only and note in Section 2 that anchors were skipped.
 replacement. But making them wait through a sequential question-and-then-retrieve flow
 burns time on something a parallel call resolves for free.
 
----
-
 ## Step 3: Evidence Retrieval (Parallel)
 
 Retrieve all sources in parallel. Today = local date. Only gather enough to produce a
@@ -132,9 +101,9 @@ three-minute read. Do not dump.
 
 ### 3a: Meeting notes, meetings attended today
 
-For each meeting the user attended today from {{MEETING_NOTES_SYSTEM}}: title, attendees
-(briefly), AI summary. Extract any commitments that appear in the summary ("the user
-will…", "agreed to send…", "by Friday").
+For each meeting the user attended today from Granola: title, attendees (briefly), AI
+summary. Extract any commitments that appear in the summary ("the user will…", "agreed to
+send…", "by Friday").
 
 Summary-level only. Do not promise verbatim commitments unless the summary names them
 explicitly.
@@ -157,7 +126,8 @@ than to confidently attribute X to the wrong person.
 Bidirectional. Outbound-only misses half the picture: replies from others that close loops,
 DMs received, threads participated in mid-chain. Pull all in parallel.
 
-**Outbound:** messages the user sent today (`{{USER_CHAT_HANDLE}}`). Sort by timestamp.
+**Outbound:** messages the user sent today (the user's Slack handle, resolved from the KB
+index). Sort by timestamp.
 
 **Inbound:** mentions of the user, DMs received today, any thread where the other party
 replied after the user's last message.
@@ -166,8 +136,7 @@ replied after the user's last message.
 thread. The difference between "you owe a note to the team" and "you posted the note at
 12:58 and it landed well" lives inside thread replies.
 
-**Channels:** key channels from {{SYSTEMS_REFERENCE_LOCATION}} (where source-to-system
-mapping lives).
+**Channels:** key channels from the KB index (where source-to-system mapping lives).
 
 **Build four lists:**
 
@@ -184,34 +153,33 @@ Paginate once if needed. Two rounds at most.
 
 ### 3c: Ticketing, today's activity
 
-Find issues where the user commented or transitioned today. Narrow query: issues updated by
-the user since start-of-day. Return summary, status, assignee.
+Find Jira issues where the user commented or transitioned today. Narrow query: issues updated
+by the user since start-of-day. Return summary, status, assignee.
 
 ### 3d: Decision Log, today's entries
 
-Fetch {{DECISION_LOG_LOCATION}}. Scan for entries dated today. If any, list them. If none,
-that's a valid result; move on.
+Fetch the Decision Log note. Scan for entries dated today. If any, list them. If none, that's
+a valid result; move on.
 
 ### 3e: Tomorrow's Calendar
 
-Fetch tomorrow's meetings from {{MEETING_NOTES_SYSTEM}} or calendar. For each, flag if
-obvious prep is missing (no linked doc, no prior meeting notes, named stakeholder without
-recent context).
+Fetch tomorrow's meetings from Granola or the calendar. For each, flag if obvious prep is
+missing (no linked doc, no prior meeting notes, named stakeholder without recent context).
 
 If unreachable, skip cleanly. Do not fail the whole run.
 
 ### 3f: Direct Report List
 
-From {{ORG_REFERENCE_LOCATION}} fetched in Step 0, extract the user's current directs.
-Use this list to annotate the interpersonal surface in 3b: flag any direct report the user
-spoke to or didn't speak to today.
+From the Org and People note fetched in Step 0, extract the user's current directs. Use this
+list to annotate the interpersonal surface in 3b: flag any direct report the user spoke to or
+didn't speak to today.
 
 ### 3g: Open Items Tracker
 
-Fetch {{OPEN_ITEMS_TRACKER_LOCATION}}. Tracker structure (fields, quadrants, provenance
-values, tag block format, numbering rules, aging logic) is defined in the
-{{SKILL_INDEX_LOCATION}} canonical-home subsection "Open Items Tracker, Structure". Read
-that subsection from the Step 0 fetch and parse the tracker against it.
+Fetch the Open Items Tracker note. Tracker structure (fields, quadrants, provenance values,
+tag block format, numbering rules, aging logic) is defined in the skill-index canonical-home
+subsection "Open Items Tracker, Structure". Read that subsection from the Step 0 fetch and
+parse the tracker against it.
 
 The "Removed" sections at the bottom are read-only history. Preserve them on write but do
 not modify.
@@ -233,20 +201,18 @@ one-time note. Don't ask the user to confirm structural defaults item-by-item.
 If chat or ticketing fails, name the failure at the top of the output. Continue with what
 you have. An EOD with partial evidence is still useful.
 
----
-
 ## Step 3.5: Queue Consumer (Optional, KB Write Discipline)
 
 This step is for users who maintain a KB proposal queue under a Cat-A / Cat-B / Cat-C write
-discipline (canonical owner / proposer / writer). If {{KB_PROPOSAL_QUEUE_LOCATION}} is "n/a",
-skip this entire step.
+discipline (canonical owner / proposer / writer). If you do not run a proposal queue, skip
+this entire step.
 
 If you maintain a queue, this step drains the Pending section for entries this skill owns.
 
 ### 3.5a: Fetch Pending Queue
 
-Fetch {{KB_PROPOSAL_QUEUE_LOCATION}}. Parse the Pending section into structured entries
-(Date, Source skill, Target note, Proposed change, Rationale, Tier, Urgency, Status).
+Fetch the KB proposal queue note. Parse the Pending section into structured entries (Date,
+Source skill, Target note, Proposed change, Rationale, Tier, Urgency, Status).
 
 ### 3.5b: Filter to EOD's Ownership
 
@@ -302,9 +268,7 @@ After processing:
 1. Auto-promote: any remaining Pending Same-day entry older than 48 hours gets promoted to
    This-week in place.
 2. If any applied patch created a new note, changed a note's scope, or moved content, update
-   {{KB_INDEX_LOCATION}} routing table and append one entry to {{KB_CHANGELOG_LOCATION}}.
-
----
+   the KB index routing table and append one entry to the KB changelog note.
 
 ## Step 4: Synthesise the Output
 
@@ -547,8 +511,6 @@ valid choice on a light day.
 
 Keep under ten items. If longer, something's wrong upstream and worth naming.
 
----
-
 ## Step 5: Batch Confirm
 
 If 4-pre, 4a, 4a.5, 4a.6, 4a.7, and 4a-post all produced zero items needing input, skip
@@ -578,8 +540,6 @@ chosen at 10 wd is not allowed; the prompt forces a pick. Silence on completion-
 candidates leaves them open (closure is one-way). Silence on yesterday's chosen defaults to
 carried.
 
----
-
 ## Step 6: Rewrite the Open Items Tracker
 
 If Step 5 produced no confirmed changes, skip. Otherwise:
@@ -592,29 +552,24 @@ If Step 5 produced no confirmed changes, skip. Otherwise:
    backfills. Update the callout header (last refresh, next number).
 4. Write the full updated note via the appropriate full-note tool.
 
----
-
 ## Step 7: Write the Dated EOD Note
 
-Create a new note as a child of {{ARCHIVE_PARENT_LOCATION}}. Never update a previous EOD note.
+Create a new note as a child of the EOD archive parent under the personal channel. Never
+update a previous EOD note.
 
 - Title: `EOD YYYY-MM-DD` (ISO date, local timezone).
 - Body: full three-section output from Step 4 + Section 2b + Section 3, including which
   additions the user confirmed in Step 5.
 
----
-
 ## Step 8: Archive Old EOD Notes
 
 At end of run:
 
-1. List children of {{ARCHIVE_PARENT_LOCATION}}.
+1. List children of the EOD archive parent.
 2. Find notes matching `EOD YYYY-MM-DD` older than 14 days.
 3. Archive each. Do not delete.
 
 14 days is chosen so the weekly-self-reflection always has last week's full set available.
-
----
 
 ## Step 9: Deliver in Chat
 
@@ -622,15 +577,11 @@ Render the full output in chat. Include a reference to the dated note: "Saved as
 YYYY-MM-DD in your personal channel." If new items were added, append: "Added N item(s) to
 tomorrow's open items list."
 
----
-
 ## Step 10: Skill Run Log
 
 Append a single line to the Skill Run Log:
 
 `end-of-day-review | [ISO timestamp] | [Success|Partial|Failed] | [one-line note if partial or failed]`
-
----
 
 ## Step 11: Kill Criterion Check
 
@@ -640,8 +591,6 @@ On the first run of week five after the skill's first-ever run, append a short p
 > not, say the word and this skill retires."
 
 If the user says retire, archive the skill and stop scheduling.
-
----
 
 ## Overlap Guards
 
@@ -653,8 +602,6 @@ If the user says retire, archive the skill and stop scheduling.
 - **Weekly Self-Reflection:** runs Sunday. Reads the week's five EOD outputs as evidence.
   Don't duplicate the week-level synthesis here.
 - **Monday Briefing:** downstream consumer. May read last Thursday's EOD as anchor.
-
----
 
 ## Failure Modes
 
@@ -669,9 +616,74 @@ If the user says retire, archive the skill and stop scheduling.
 - **No chosen items.** Valid. Write zero. Carries from yesterday still apply.
 - **`chosen for` would fall on a weekend.** Advance to next working day.
 
----
+## Worked example (fictional data)
+
+**Trigger.** Thursday evening, the user (a product executive at Acme) types "run my EOD".
+
+**Step 2 anchors.** The skill asks the two questions while retrieval runs. The user replies:
+"Hardest: the pricing review went in circles. Best: Daniel finally handed off the deploy
+issue."
+
+**Step 3 retrieval (parallel).** Granola shows three meetings (pricing review, a 1:1 with
+Daniel, a customer call with Northwind); Slack shows the user committed in #gtm to "send the
+revised pricing model by Tuesday"; Jira shows two issues transitioned; the Decision Log has
+no entry today; tomorrow's calendar has a board prep with no linked doc.
+
+**Step 4 output (rendered in chat):**
+
+```
+**Section 1, What happened**
+- Meetings: 3 (pricing review, 1:1 with Daniel, Northwind customer call).
+- Chat: moderate. Active in #gtm and #payments-eng.
+- Tickets: 2 transitioned (PAY-412 to Done, PAY-419 to In Review).
+- Decisions logged today: none.
+
+**Section 2, What mattered**
+You named the pricing review as the hard moment, and the evidence agrees: it ran 50 minutes
+with no decision, and you closed it by committing to send a revised model yourself by Tuesday
+(#gtm, 16:42). That is now the thing you owe. The best moment holds up too: Daniel's handoff
+of the deploy issue shows in #payments-eng, where he routed it to a named owner rather than
+taking it on himself, the exact shift the last 1:1 was pushing for.
+
+You owe the revised pricing model to the GTM group by Tuesday. Northwind is waiting on a
+follow-up note from today's call. You spoke to Daniel and the GTM leads today; you did not
+speak to Priya, who has surfaced in two of the last three days.
+
+**Section 2b, Today's read**
+What landed well:
+- You let Daniel own the deploy handoff instead of solving it (#payments-eng, 15:10). That is
+  the coaching focus landing in real behaviour.
+- You closed the Northwind call with a concrete next step rather than an open "we'll follow
+  up" (Granola summary).
+One thing to improve:
+- The pricing review had no framing of the decision to be made at the top, so it drifted.
+  Next time, open with the specific call and the options, not the context.
+
+**Section 3, What's next**
+1. Tomorrow's three: revised pricing model (carried), Northwind follow-up note, board-prep
+   doc.
+2. New committed: revised pricing model, owner you, due Tuesday (source: #gtm).
+3. New committed: Northwind follow-up, owner you (source: Granola, Northwind call).
+4. Prep gap: tomorrow's board prep has no linked doc.
+```
+
+**Step 4a-post (the picker), shown as a blank field:**
+
+```
+Tomorrow's three.
+
+Carried from yesterday: #7 (revised pricing model).
+
+Type the remaining 2.
+
+1.
+2.
+```
+
+The user types "Northwind follow-up note" and "board-prep doc". The skill escalates the
+carried item and creates the two new ones as `chosen`, then writes the tracker and the dated
+note.
 
 ## Output Format
 
-Conform to the appropriate bucket in {{OUTPUT_STANDARDS_REFERENCE}}. Output location is
-always {{PERSONAL_CHANNEL_LOCATION}}; never a shared KB channel.
+Output location is always the user's personal channel; never a shared KB channel.

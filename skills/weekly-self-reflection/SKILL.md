@@ -11,41 +11,21 @@ description: >
   sync in a single pass.
 ---
 
-# Weekly Self-Reflection: Template
+# Weekly Self-Reflection
 
-> Template. Replace every `{{PLACEHOLDER}}` with your own context. A worked example is in
-> [SKILL.example.md](SKILL.example.md). For design patterns, see [README.md](README.md).
+Sunday morning: a full leadership self-reflection, plus decision capture, plus KB update
+proposals, in one evidence-based pass. Runs ahead of the Monday cascade so the weekly view
+is ready before the Monday briefing.
 
-## Placeholders used in this template
+> The stack named below is illustrative: Notion as the KB (holding the org note, decision
+> log, strategy note, reflection landing and archive), Slack for chat, Granola for meeting
+> notes, Mixpanel for product analytics, an optional support tool. Swap these for your own.
+> The evidence hierarchy, the adversarial "how I'm landing" read, and the pre-publish
+> verification pass are the portable parts. The proposal-queue mechanics in Step 6 are
+> optional and only apply if you run a Cat-A/B/C KB write discipline.
 
-| Placeholder | What to put here | Example values |
-|---|---|---|
-| `{{KB_SYSTEM}}` | Your knowledge base. | "Slite", "Notion", "Confluence" |
-| `{{SKILL_INDEX_LOCATION}}` | Your skill registry. | "the Personal Skill Index note in {{KB_SYSTEM}}" |
-| `{{KB_INDEX_LOCATION}}` | The routing table mapping content categories to notes. | "the KB index note in {{KB_SYSTEM}}" |
-| `{{ORG_REFERENCE_LOCATION}}` | The Area / Person mapping. | "the Org & People note in {{KB_SYSTEM}}" |
-| `{{DECISION_LOG_LOCATION}}` | Your decision log. | "the Decision Log note in {{KB_SYSTEM}}" |
-| `{{STRATEGY_REFERENCE}}` | Where active strategic priorities live. | "the Strategy & Missions note in {{KB_SYSTEM}}" |
-| `{{REFLECTION_LANDING_LOCATION}}` | The reflection landing page (overwritten each run). | "the Weekly Reflection note in {{KB_SYSTEM}}" |
-| `{{REFLECTION_ARCHIVE_PARENT}}` | Where prior reflections are archived. | "the Reflection Archive folder" |
-| `{{EOD_ARCHIVE_PARENT}}` | Where the daily EOD notes live. | "the EOD Summaries note" |
-| `{{PERSONAL_CHANNEL_LOCATION}}` | Where output lands. | "your personal channel in {{KB_SYSTEM}}" |
-| `{{KB_PROPOSAL_QUEUE_LOCATION}}` | (Optional) Your KB proposal queue. | "the KB Proposal Queue note", or "n/a" |
-| `{{CHAT_TOOL}}` | Your team chat tool. | "Slack", "Teams" |
-| `{{MEETING_NOTES_SYSTEM}}` | Where meeting summaries live. | "Granola", "Otter" |
-| `{{SUPPORT_TOOL}}` | Your customer-support tool (optional source). | "Intercom", "Zendesk", "n/a" |
-| `{{ANALYTICS_TOOL}}` | Your product-usage analytics. | "Mixpanel", "Amplitude" |
-| `{{MISSION_TERM}}` | Whatever you call portfolio-level strategic priorities. | "mission", "bet", "initiative" |
-| `{{OUTPUT_STANDARDS_REFERENCE}}` | Where your output axioms live. | "the Skill Output Standards note in {{KB_SYSTEM}}" |
-
----
-
-## What This Does
-
-Sunday morning, full leadership self-reflection + decision capture + KB update
-proposal in one pass. Runs ahead of the Monday cascade so the weekly view is ready before
-the Monday briefing. The spine of this skill is the past week's five EOD outputs (Mon-Fri),
-so an early-week run only has a partial set and should be rare and noted.
+The spine of this skill is the past week's five EOD outputs (Mon-Fri), so an early-week run
+only has a partial set and should be rare and noted.
 
 **Produces:**
 
@@ -53,25 +33,9 @@ so an early-week run only has a partial set and should be rare and noted.
 2. Decision log entries (sent to decision-log skill or stored for review).
 3. KB update proposals (gathered from the user's own signals, not team-sourced).
 
-**Gathers from:** {{CHAT_TOOL}} (the user's messages and mentions, last 7 days),
-{{MEETING_NOTES_SYSTEM}} (last 7 days), {{KB_SYSTEM}} (recent changes), {{SUPPORT_TOOL}}
-(support themes the user touched), and AI conversation history (strategic thinking the user
-did this week).
-
----
-
-## Output Header
-
-Every output this skill produces begins with:
-
-```
-Owner: weekly-self-reflection | Last run: [DD Mon YYYY HH:MM]
-Freshness: chat: [status], meeting-notes: [status], KB: [status], support: [status], decision-log: [status]
-```
-
-Status tags: `live`, `failed`, `fallback (Nd/h)`.
-
----
+**Gathers from:** Slack (the user's messages and mentions, last 7 days), Granola (last 7
+days), Notion (recent changes), the support tool (support themes the user touched), and AI
+conversation history (strategic thinking the user did this week).
 
 ## CRITICAL: Mandatory Step 0: Fetch canonical org data and KB index
 
@@ -80,19 +44,19 @@ reflection in current org reality and strategic context.
 
 ### Step 0a: Fetch org data
 
-Fetch {{ORG_REFERENCE_LOCATION}}. If fetch fails: "Cannot run reflection, org data
-unreachable. Confirm {{KB_SYSTEM}} connection and retry." **STOP HERE.** Extract current
-roles and team ownership.
+Fetch the Org and People note in Notion. If fetch fails: "Cannot run reflection, org data
+unreachable. Confirm Notion connection and retry." **STOP HERE.** Extract current roles and
+team ownership.
 
 ### Step 0b: Fetch KB index
 
-Fetch {{KB_INDEX_LOCATION}}. If fetch fails: stop with the same message. Locate the decision
+Fetch the KB index note. If fetch fails: stop with the same message. Locate the decision
 log, active strategy/missions, and metrics notes.
 
 ### Step 0c: Fetch strategic baseline (recommended)
 
-Fetch {{STRATEGY_REFERENCE}} to understand current strategic priorities. Gives context for
-whether the week's decisions align with or challenge them.
+Fetch the Strategy and Missions note to understand current strategic priorities. Gives
+context for whether the week's decisions align with or challenge them.
 
 ### Step 0d: Build verification lookups
 
@@ -110,8 +74,6 @@ Why this step exists: transcription and attribution errors (a wrong first name, 
 account) are the cheapest factual errors to catch with a lookup and the most damaging to
 trust if they ship.
 
----
-
 ## Evidence Hierarchy
 
 Three outputs, three evidence profiles:
@@ -121,13 +83,11 @@ Three outputs, three evidence profiles:
   rationale and success metric attached are usually Secondary (reasoning in the moment, not
   externally verified).
 - **KB update proposals:** strategy shifts from meeting observations are Secondary; specific
-  metrics from {{ANALYTICS_TOOL}} are Primary; a synthesis of the user's thinking from AI
+  metrics from Mixpanel are Primary; a synthesis of the user's thinking from AI
   conversations is Interpreted.
 
 Tag at the claim level before presenting to the user, so they approve or reject with the
 evidence weight visible.
-
----
 
 ## Step 1: Gather Evidence (All Sources in Parallel)
 
@@ -139,10 +99,9 @@ The spine of this reflection is the past week's five EOD outputs. Read them firs
 already done the daily synthesis, attribution, and commitment capture; the live pulls in
 Sources 1-5 supplement and verify rather than starting from scratch.
 
-For each weekday (Mon-Fri): look up the EOD note `EOD YYYY-MM-DD` as a child of
-{{EOD_ARCHIVE_PARENT}}. If present, read it; capture anchors, commitments named,
-interpersonal moments, open items added. If absent, note the gap explicitly. Don't infer
-from silence.
+For each weekday (Mon-Fri): look up the EOD note `EOD YYYY-MM-DD` as a child of the EOD
+archive parent. If present, read it; capture anchors, commitments named, interpersonal
+moments, open items added. If absent, note the gap explicitly. Don't infer from silence.
 
 Build a week-level view: which themes recurred, which Monday commitments were closed by
 Friday, which interpersonal threads kept surfacing, which days were thin. This week-view is
@@ -153,7 +112,7 @@ Reflection rests more heavily on live source pulls than usual."
 
 ### Source 0.5: Prior 4 weeks of archived reflections (trend spine)
 
-Read the four most recent archived reflections under {{REFLECTION_ARCHIVE_PARENT}}. For
+Read the four most recent archived reflections under the reflection archive parent. For
 each: extract themes named, focuses set, carried-forward items, decisions logged. Note dates
 (W-1 … W-4).
 
@@ -194,20 +153,16 @@ Extract themes engaged with and resolution approach.
 Review the past 7 days of AI sessions: what strategic thinking did the user do, what
 problems did they tackle, what frameworks emerged?
 
----
-
 ## Step 2: Archive Current Landing Page
 
 Before writing the new reflection, archive the current landing page.
 
-1. Read {{REFLECTION_LANDING_LOCATION}}. Store full current content.
-2. Create an archive child under {{REFLECTION_ARCHIVE_PARENT}} titled `Weekly Self-Reflection,
+1. Read the reflection landing note. Store full current content.
+2. Create an archive child under the reflection archive parent titled `Weekly Self-Reflection,
    [date of current content]`, preserving the full content.
 3. Extract carried-forward items (open actions, unresolved coaching signals, multi-week
    commitments, pending follow-ups) to include in the new reflection's "Carried Forward"
    section.
-
----
 
 ## Step 3: Assess Leadership Performance
 
@@ -223,8 +178,6 @@ Using Step 1 evidence, reflect on:
   accountability, or letting things drift?
 - **Strategic clarity.** Is thinking showing up in the KB, or happening in private and not
   propagated?
-
----
 
 ## Step 4: Write the Reflection
 
@@ -331,8 +284,6 @@ still have happened. Before claiming a slip grounded in absence of trace:
   bullet, or reframe: "No written trace found, may have been handled in 1:1. Worth checking
   before claiming this as a slip." Frame as low-confidence to verify, not a finding.
 
----
-
 ## Step 4.5: How I'm Landing, Adversarial Communication Read
 
 ### Why this section exists
@@ -432,8 +383,6 @@ If a pattern has no evidence:
 - **Check 7 (chat citation completeness):** every chat quote in this section must carry
   channel and date. Quotes without attribution fail.
 
----
-
 ## Step 5: Extract Decisions for Decision Log
 
 From Step 1 evidence, identify significant decisions: strategic commitments, org changes,
@@ -445,8 +394,6 @@ if it references a KPI, Secondary if qualitative); owner; evidence tag per eleme
 
 Send to the decision-log skill, or present to the user for approval before logging.
 
----
-
 ## Step 6: Queue Consumer (Optional, KB Write Discipline) + Own Proposals
 
 If you don't maintain a KB proposal queue, skip the queue mechanics and simply present KB
@@ -457,7 +404,7 @@ If you do maintain a queue under Cat-A/B/C write discipline:
 
 ### 6a-6c: Drain and filter
 
-Fetch {{KB_PROPOSAL_QUEUE_LOCATION}}. Run the queue backstop unconditionally, processing all
+Fetch the KB proposal queue note. Run the queue backstop unconditionally, processing all
 Pending entries this skill owns at its native tier (Interpreted, Synthesis urgency), plus
 any Primary/Secondary entries at Same-day/This-week/Urgent that EOD didn't reach (weekend
 writes, partial EOD failures). The idempotency check (6g) makes repeating safe. State the
@@ -500,8 +447,6 @@ range) rather than appending; this avoids append-creep without the wipe risk of 
 rewrite. After all patches: if any created a new note, changed scope, or moved content,
 update the KB index routing table and append one changelog entry. Non-structural in-place
 updates need neither. When in doubt, log.
-
----
 
 ## Step 6.5: Pre-Publish Verification Pass
 
@@ -550,18 +495,14 @@ The subagent returns a structured list of failures per check. If empty, proceed 
 non-empty, rewrite and rerun. Do not publish until clean, or until a failure is explicitly
 accepted and flagged to the user in the output.
 
----
-
 ## Step 7: Write Landing Page (Overwrite with Archive Pattern)
 
 1. Preserve the existing intro callout at the top of the landing page (keep it, don't re-add).
 2. Add a "Carried Forward" section if there are open items from the previous run (Step 2).
 3. Include the fresh reflection content from Step 4.
-4. Include a link to {{REFLECTION_ARCHIVE_PARENT}}.
-5. Write to {{REFLECTION_LANDING_LOCATION}} with the full content (replace entirely; do not
+4. Include a link to the reflection archive parent.
+5. Write to the reflection landing note with the full content (replace entirely; do not
    append-blocks).
-
----
 
 ## Step 8: Archive and Publish
 
@@ -572,7 +513,49 @@ accepted and flagged to the user in the output.
    changelog update. The landing page overwrite in Step 7 is this skill's own canonical note
    and isn't subject to the queue discipline.
 
----
+## Worked example (fictional data)
+
+**Trigger.** Sunday morning, the user (a product executive at Acme) types "run my reflection".
+
+**Step 1 spine.** Four of five EOD notes exist for the week (Wednesday's is missing, flagged).
+The trend spine has four prior reflections. Across the week, two themes recur: the user kept
+getting pulled into the deploy-flakiness incident, and the pricing model slipped from Tuesday
+to Thursday to "next week".
+
+**An excerpt of the drafted reflection (the section that earns its keep):**
+
+```
+## What I'm noticing about my leadership
+
+- The pricing model has now slipped three times (this week's EODs Tue and Thu; W-1
+  reflection, 11 May, named it "the thing I keep not finishing"). The pattern is not
+  capacity, your calendar had gaps both afternoons. What changed about the threshold for
+  actually sitting down with it? Worth asking whether it has become avoidance dressed as
+  prioritisation.
+- Direct-report fires crowded out peer work again. You spoke to Daniel daily but did not
+  reach Priya once this week, the third week running this asymmetry shows (W-1 11 May, W-2
+  4 May both noted it). The connecting frame is not "stay closer to Priya"; it is that
+  incident response keeps winning your attention by being louder, not more important.
+
+## How I'm landing
+
+**1. Reframe-before-acknowledge:** When the GTM lead pushed back on the pricing timeline you
+replied "fair, but the model has to be right before it is fast" (#gtm, 14 May), which
+acknowledges in three words and re-delivers your original position. The point they were
+making, that the delay has a cost, went unaddressed.
+*Evidence:* #gtm, 14 May, 16:51.
+
+**2. Status-asymmetric warmth:** No evidence of this pattern this week.
+*Sources checked:* chat (around 60 messages reviewed), meetings (4 reviewed), prior
+reflections (4 checked).
+```
+
+**Step 5, decisions surfaced.** One: the reallocation of two engineers off the partner portal
+(Primary, stated in #payments-eng 14 May). Routed to decision-log for confirmation.
+
+**Step 6.5, verification caught one error.** The draft attributed a comment to "Sam"; the
+people lookup shows two Sams, and the evidence only said "Sam". Check 1 failed, so the line
+was rewritten to "someone in the leadership sync" before publishing.
 
 ## Integration with Other Skills
 
@@ -583,8 +566,6 @@ accepted and flagged to the user in the output.
 - **blind-spots-report:** runs independently; both use the Step 0 canonical-source pattern.
 - **end-of-day-review:** produces the five daily EOD notes that are this skill's primary
   spine (Source 0). This skill is also the Friday backstop if EOD missed runs.
-
----
 
 ## Key Rules
 
@@ -599,17 +580,14 @@ accepted and flagged to the user in the output.
 9. Verify before publishing (Step 6.5). If verification surfaces failures, rewrite and rerun;
    do not publish first and correct later.
 
----
-
 ## Output Format
 
-Bucket B (coaching and reflection) per {{OUTPUT_STANDARDS_REFERENCE}}.
+Reflection output, delivered in the user's personal channel only.
 
 - **No AI banner.** These land in the user's personal channel only; the private context makes
   the banner noise.
-- **TL;DR**: 2-3 paragraphs (longer than standard Bucket B, because reflection earns weight
-  on depth). Lead with strategy and impact, then interpersonal complexity. Do not open with
-  a feelings-summary.
+- **TL;DR**: 2-3 paragraphs. Lead with strategy and impact, then interpersonal complexity. Do
+  not open with a feelings-summary.
 - **Prose organised by person, theme, or anchor**: no forced table. Recognition before
   critique. Name the gap, not the grade.
 - **Method footer**: sources pulled, date range, anything stale or missing.
@@ -620,4 +598,4 @@ threshold for a hard insight is lower on Sunday reflection than in any other con
 reflection feels safe on a re-read, it isn't doing its job. Frame hard reads as questions
 back to the user, not assertions.
 
-Output location: always {{PERSONAL_CHANNEL_LOCATION}}; never a shared KB channel.
+Output location: always the user's personal channel; never a shared KB channel.

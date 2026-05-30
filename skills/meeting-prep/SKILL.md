@@ -13,38 +13,25 @@ description: >
   and asks what's going on with them.
 ---
 
-# Meeting Prep: Template
+# Meeting Prep
 
-> Template. Replace every `{{PLACEHOLDER}}` with your own context. A worked example is in
-> [SKILL.example.md](SKILL.example.md). For design patterns, see [README.md](README.md).
+Prepares a decision-ready brief for any named meeting, so the user walks in already oriented
+rather than reading a dump of everything that exists.
 
-## Placeholders used in this template
-
-| Placeholder | What to put here | Example values |
-|---|---|---|
-| `{{KB_SYSTEM}}` | Your knowledge base. | "Slite", "Notion", "Confluence" |
-| `{{MEETING_NOTES_SYSTEM}}` | Where your meeting notes live. | "Granola", "Otter", "manual notes in {{KB_SYSTEM}}" |
-| `{{CHAT_TOOL}}` | Your team chat tool. | "Slack", "Teams", "Discord" |
-| `{{TICKETING_SYSTEM}}` | Your delivery / ticketing system. | "Jira", "Linear", "GitHub Issues" |
-| `{{CS_PLATFORM}}` | Your customer-success platform (for customer meetings). | "Gainsight", "ChurnZero", "Vitally", or "n/a" |
-| `{{CRM_SYSTEM}}` | Your CRM (for customer meetings). | "HubSpot", "Salesforce" |
-| `{{CALL_RECORDING_TOOL}}` | Your call-recording / conversation-intelligence tool (for customer meetings). | "Gong", "Chorus", "Avoma", or "n/a" |
-| `{{ORG_REFERENCE_LOCATION}}` | Where the Area → Owner mapping lives. | "the Org & People note in {{KB_SYSTEM}}" |
-| `{{SKILL_INDEX_LOCATION}}` | Your skill registry. | "the Personal Skill Index note in {{KB_SYSTEM}}" |
-| `{{OUTPUT_STANDARDS_REFERENCE}}` | Where your output-format axioms live. | "the Skill Output Standards note in {{KB_SYSTEM}}" |
-| `{{MISSION_TERM}}` | Whatever you call portfolio-level strategic priorities. | "mission", "bet", "initiative" |
-| `{{USER_ROLE}}` | The user's role for context-framing. | "product executive", "VP Engineering", "Head of Design" |
-
----
+> The stack named below is illustrative: Granola for meeting notes, Slack for chat, Jira for
+> tickets, a CRM and a customer-success platform for accounts, a call-recording tool for
+> customer calls, and Notion as the KB. Swap these for your own. The source discipline (what
+> to fetch, what never to fetch) and the brief structure are the portable parts. The user in
+> the worked example is a product executive at a fictional vertical-SaaS company, Acme.
 
 ## Source discipline: call-recording tool
 
-`{{CALL_RECORDING_TOOL}}` is a Secondary source at the **per-account tracker-hit and call-count
+The call-recording tool is a Secondary source at the **per-account tracker-hit and call-count
 layer only**, used **only when the meeting type is customer / external**. Not used for 1:1s,
 leadership reviews, or peer syncs. This skill never fetches call summaries, never fetches
 transcripts, and never surfaces individual-person attribution or quotes.
 
-**What this skill fetches from `{{CALL_RECORDING_TOOL}}` for a customer meeting:**
+**What this skill fetches from the call-recording tool for a customer meeting:**
 
 - The account's call count over the past 90 days, by call type (e.g., CS check-in, sales
   conversation, churn debrief, onboarding).
@@ -68,8 +55,6 @@ enter the brief.
 hits: [tracker name (count), tracker name (count)]." Place under "Recent history" or "Current
 state" depending on whether trackers point at historical themes or open commitments.
 
----
-
 ## CRITICAL: Mandatory Step 0: Fetch canonical org data (for 1:1s only)
 
 For 1:1 meetings with direct reports, fetch the current org data to validate role and team
@@ -77,12 +62,12 @@ assignments. This ensures the brief reflects current org reality, not stale assu
 
 1. Identify meeting type: is this a 1:1 with a direct report, or a different type?
 2. If 1:1 with direct report: proceed with Step 0a. Otherwise, skip to Step 1.
-3. Fetch {{SKILL_INDEX_LOCATION}}. Use note IDs from the registry for all reads below. Do
-   not hardcode IDs in this skill.
+3. Fetch the skill index note in Notion. Use note IDs from the registry for all reads below.
+   Do not hardcode IDs in this skill.
 
 **Step 0a: Fetch org data**
 
-- Fetch {{ORG_REFERENCE_LOCATION}}.
+- Fetch the Org and People note in Notion.
 - If fetch fails: report "Cannot prepare 1:1 brief, org data unreachable. Confirm KB
   connection and retry." **STOP HERE.**
 - Extract the section relevant to the user's directs.
@@ -96,9 +81,7 @@ assignments. This ensures the brief reflects current org reality, not stale assu
 - If role/team has changed since your last knowledge, note this as context for the brief.
 - If their role is unclear in the org data, flag to the user rather than assuming.
 
----
-
-You are preparing a meeting brief for a {{USER_ROLE}}. They need concise, decision-ready
+You are preparing a meeting brief for a product executive. They need concise, decision-ready
 context, not a summary of everything that exists. The output should read like a trusted
 colleague has done the research so the user can walk into the meeting already oriented.
 
@@ -121,28 +104,28 @@ Complete ALL retrieval before writing anything. Do not narrate the retrieval pro
 
 **For all meeting types:**
 
-- `{{MEETING_NOTES_SYSTEM}}`: search for recent meetings involving this person, account, or
-  topic (last 4-6 weeks).
-- `{{CHAT_TOOL}}`: search for recent mentions of the person, company, or relevant topic.
+- Granola: search for recent meetings involving this person, account, or topic (last 4-6
+  weeks).
+- Slack: search for recent mentions of the person, company, or relevant topic.
 
 **For customer / external meetings, additionally:**
 
-- `{{CS_PLATFORM}}`: resolve the customer first, then in parallel pull:
+- Customer-success platform: resolve the customer first, then in parallel pull:
   - Health score, account stage, ARR / MRR, customer-success manager, key flags (multisite,
     region, segment).
   - Open CTAs / Risks / Expansions / Churn Risks.
   - Recent timeline activity (last 60 days, last 5 entries).
-- `{{CRM_SYSTEM}}`: commercial context, deal status, contract details. Capture the CRM
-  account ID for the call-recording fetch below.
-- `{{CALL_RECORDING_TOOL}}` per-account tracker hits (last 90 days). Bound by the **Source
+- CRM: commercial context, deal status, contract details. Capture the CRM account ID for the
+  call-recording fetch below.
+- Call-recording tool per-account tracker hits (last 90 days). Bound by the **Source
   discipline** section at the top of this skill. Tracker-hits-only, no per-call content.
-- `{{KB_SYSTEM}}`: any strategic notes or account history.
+- Notion: any strategic notes or account history.
 
 **For 1:1 with direct report, additionally:**
 
-- `{{TICKETING_SYSTEM}}`: their team's current sprint status, blockers, recent completions
-  (using team key from Step 0).
-- `{{KB_SYSTEM}}`: any relevant OKR or roadmap context for their area.
+- Jira: their team's current sprint status, blockers, recent completions (using team key
+  from Step 0).
+- Notion: any relevant OKR or roadmap context for their area.
 - Execution / Delivery Briefing Handoff note: delivery status, blockers, escalation
   patterns, ownership quality for this person specifically.
 - Direct Report Coaching Notes: development plan status, targets, coaching focus, any live
@@ -152,15 +135,15 @@ Complete ALL retrieval before writing anything. Do not narrate the retrieval pro
 
 **For leadership / exec reviews, additionally:**
 
-- `{{KB_SYSTEM}}`: current OKR state, metric targets, {{MISSION_TERM}} status.
-- `{{TICKETING_SYSTEM}}`: cross-team delivery summary, near-term risk register.
+- Notion: current OKR state, metric targets, mission status.
+- Jira: cross-team delivery summary, near-term risk register.
 - Execution / Delivery Briefing Handoff: cross-team delivery status and blocker summary.
 - Team Effectiveness Briefing: exec summary, standout performers, team-level watch items.
 
 **For peer / cross-functional syncs, additionally:**
 
-- `{{TICKETING_SYSTEM}}`: any shared tickets or dependencies.
-- `{{KB_SYSTEM}}`: relevant strategy context.
+- Jira: any shared tickets or dependencies.
+- Notion: relevant strategy context.
 
 If a source fails or returns nothing useful, note it briefly as a source gap; do not
 substitute silence for acknowledgment.
@@ -236,8 +219,6 @@ Always end with:
 
 > Sources checked: [list]. Gaps: [anything that returned no useful signal, or failed].
 
----
-
 ## Key Rules
 
 ### For 1:1s
@@ -261,18 +242,65 @@ Always end with:
    brief. If a relevant theme has no tracker configured, that limitation stands; do not fall
    back to scanning summaries.
 
----
+## Worked example (fictional data)
+
+**Trigger.** "Prep me for my 1:1 with Daniel tomorrow." Daniel is one of the user's direct
+reports at Acme.
+
+**Step 0 (1:1, so org data is fetched).** The Org and People note confirms Daniel leads the
+Payments squad, a role he moved into six weeks ago from a senior-engineer position. The brief
+notes the recency of the role change as context.
+
+**Step 2 retrieval (Granola, Slack, Jira, coaching notes).** Recent Granola notes show two
+sprint reviews; Slack shows Daniel escalating a flaky-deploys thread three times in two weeks;
+Jira shows the Payments sprint slipped two of five committed stories; coaching notes have a
+standing focus on "delegating incident response rather than owning every fire himself".
+
+**Step 3 output:**
+
+```
+INTERNAL PREP, Not for sharing
+
+### 1:1 with Daniel: tomorrow
+
+**Context**
+Daniel leads the Payments squad, six weeks into the role after stepping up from senior
+engineer. The step-up is the backdrop for most of what follows: he is still holding on to
+the hands-on work that used to be his job.
+
+**Recent history**
+- Escalated the flaky-deploys problem in Slack three times in two weeks (#payments-eng,
+  6, 11, 14 May), each time proposing the fix himself rather than routing it to an owner.
+- Last sprint review (Granola, 9 May): committed to five stories, the team landed three.
+
+**Current state**
+- Payments sprint slipped two of five stories (Jira). Both slipped stories were blocked on
+  the same deploy flakiness Daniel has been escalating.
+- Standing coaching focus: delegating incident response instead of owning every fire.
+
+**Diagnostic questions** (DRAFT, adapt before using)
+1. How did the sprint land against what you committed to, and what do you put the gap down to?
+2. The deploy flakiness has come up a few times now. Who owns getting to the root cause?
+3. What would have to be true for you to step back from the incident response yourself?
+4. Six weeks in, where do you feel the role still pulling you back into the old job?
+
+**Watch for**
+- He may present the deploy problem as purely technical. The coaching read is that it is also
+  a delegation pattern; let him reach that rather than naming it for him.
+
+**One-way doors in this meeting**
+- Resist solving the deploy problem for him in the room. Doing so confirms the exact pattern
+  the coaching focus is trying to shift, and it is hard to walk back once you have taken it on.
+
+Sources checked: Granola, Slack, Jira, coaching notes, Org and People. Gaps: none.
+```
 
 ## Skill Run Log
 
 After completing all steps (success or failure), append an entry to your Skill Run Log
-(location resolved via {{SKILL_INDEX_LOCATION}}). Format: skill name, ISO timestamp, status
+(location resolved via the skill index). Format: skill name, ISO timestamp, status
 (Success / Partial / Failed), one-line note if failed or partial.
 
----
+## Output location
 
-## Output Format
-
-Conform to the meeting-brief bucket in {{OUTPUT_STANDARDS_REFERENCE}}. Fetch the Standards
-note at the start of every run. Output location is always the user's personal channel; never
-a shared KB channel.
+Output is always the user's personal channel, never a shared KB channel.

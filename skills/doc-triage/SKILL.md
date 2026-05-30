@@ -12,30 +12,15 @@ description: >
   good enough to go up the chain", use this skill.
 ---
 
-# Doc Triage: Template
-
-> Template. Replace every `{{PLACEHOLDER}}` with your own context. A worked example showing
-> one filled-in version is in [SKILL.example.md](SKILL.example.md). For design patterns,
-> see [README.md](README.md).
-
-## Placeholders used in this template
-
-| Placeholder | What to put here | Example values |
-|---|---|---|
-| `{{ANALYTICS_TOOL}}` | Your product-usage analytics tool. | "Mixpanel", "Amplitude", "PostHog" |
-| `{{KB_SYSTEM}}` | Your knowledge base. | "Slite", "Notion", "Confluence" |
-| `{{REVENUE_RECOGNITION_RAMP}}` | Your company's revenue recognition schedule for new ARR. | "Year 1 X%, Year 2 Y%, Year 3 Z%" |
-| `{{TOPIC_OWNER_TAXONOMY}}` | Your "who owns which topic" mapping (used in the right-reader check). | "Line manager: development. Mission lead: strategy. Product leader: market context." |
-| `{{PERSONAL_CHANNEL_LOCATION}}` | Where the user keeps personal-channel drafts (used only if the user asks to save the triage). | "your personal channel in {{KB_SYSTEM}}" |
-| `{{MISSION_TERM}}` | Whatever you call portfolio-level strategic priorities. | "mission", "bet", "initiative", "pillar" |
-
----
-
-## What This Does
+# Doc Triage
 
 A two-phase rubric for assessing whether a doc is ready to circulate to exec, SLT, or any
 stakeholder. Phase A confirms what the doc is trying to do. Phase B grades it against four
 hard-gate checks. Output is under 320 words.
+
+> The tool names, the revenue ramp, and the topic-owner map below are illustrative. They
+> show the skill working with a concrete setup (a fictional SaaS company, Acme, using
+> Mixpanel and Notion). Swap them for your own stack. The rubric itself is the portable part.
 
 This skill exists because docs that reach executives fail in a small set of specific ways:
 unclear ask, Secondary evidence treated as Primary, default-to-the-user routing, financial
@@ -44,13 +29,14 @@ Naming the failure clearly and early saves the author a round trip and protects 
 
 ## Inputs
 
-The doc can arrive as a file attached to the conversation, a KB note ID or URL, a doc URL
-(Confluence, Google Docs, etc.), or pasted text. Read it in full before doing anything else.
+The doc can arrive as a file attached to the conversation, a Notion note ID or URL, a doc
+URL (Confluence, Google Docs, etc.), or pasted text. Read it in full before doing anything
+else.
 
-Use the right tool for the source: your KB's fetcher for KB IDs or URLs, the read tool for
-a file in the workspace, the conversation directly for pasted text. If the source is
-unfamiliar or content can't be extracted, ask the user for a paste before proceeding rather
-than guessing.
+Use the right tool for the source: your knowledge base's fetcher for note IDs or URLs, the
+read tool for a file in the workspace, the conversation directly for pasted text. If the
+source is unfamiliar or content can't be extracted, ask the user for a paste before
+proceeding rather than guessing.
 
 ## Phase A: confirm the read
 
@@ -99,9 +85,9 @@ the recommendation rests on.
 **Evidence tiers:**
 
 - **Primary:** named tool or document + date + denominator or sample size. Example:
-  "{{ANALYTICS_TOOL}} booking funnel, April 2026, 450 accounts."
+  "Mixpanel booking funnel, April 2026, 450 accounts."
 - **Secondary:** named person + context (meeting, chat, interview) + approximate date.
-  Example: "[Name] in the regional review, March 2026."
+  Example: "Priya in the regional review, March 2026."
 - **Interpreted:** synthesis, projection, or inference. Must be explicitly labelled as
   assumed in the doc.
 
@@ -115,11 +101,12 @@ the recommendation rests on.
 2. **Enabled vs active adoption.** Any feature percentage or count without distinguishing
    *enabled* (provisioned or accessible) from *active* (actually used). "X% of accounts have
    this feature" almost always means enabled. Flag it and name where the active usage figure
-   lives: {{ANALYTICS_TOOL}}, with the event and denominator.
+   lives: Mixpanel, with the event and denominator.
 
-3. **ARR without ramp.** If your company recognises new ARR on a ramp ({{REVENUE_RECOGNITION_RAMP}}),
-   an ARR figure stated without applying the ramp is misleading. Ask for the step-by-step
-   math: eligible population × adoption % × price × 12 = full ARR, then apply the ramp.
+3. **ARR without ramp.** If your company recognises new ARR on a ramp (Acme uses Year 1 40%,
+   Year 2 80%, Year 3 100%), an ARR figure stated without applying the ramp is misleading.
+   Ask for the step-by-step math: eligible population x adoption % x price x 12 = full ARR,
+   then apply the ramp.
 
 4. **Unlabelled inference.** A load-bearing claim is Interpreted but not labelled as such.
    Flag it: "Inference note: [what is being inferred]; [what data would confirm it, and
@@ -157,7 +144,12 @@ utilise, streamline, comprehensive.
 
 A doc going to the wrong reader fails even if the rubric passes.
 
-{{TOPIC_OWNER_TAXONOMY}}
+Topic-owner map (illustrative, for Acme):
+
+- A person's development or performance: their line manager.
+- Strategy on a portfolio priority: that mission's lead.
+- Market or competitor context: the product leader.
+- Delivery status on a squad: the engineering lead for that squad.
 
 Default-to-the-user is a failure mode. If the doc is routed to the user but the topic
 clearly sits with a non-user owner, flag the audience issue and name the right reader.
@@ -206,12 +198,59 @@ Tone: trusted colleague who has read this doc carefully and wants it to succeed,
 gatekeeper checking boxes. Be direct about problems but frame them as fixable. Acknowledge
 the effort. No em dashes. No padding.
 
+## Worked example (fictional data)
+
+**Input.** A colleague at Acme (a fictional vertical-SaaS company) shares a doc titled
+"Self-serve onboarding: time to double down" and asks "can this go to the exec review on
+Friday?"
+
+The doc's core claims: "62% of accounts now have self-serve onboarding enabled. Early signs
+are strong. This could add 1.2M in ARR. We should make it the default for all new accounts."
+Its only cited source is a previous planning doc from February.
+
+**Phase A output:**
+
+```
+Doc type: strategy_decision
+Audience: exec/SLT
+Purpose: decision
+
+Confirm, correct, or clarify before I run the full rubric.
+```
+
+The user replies "yes, it's a decision doc for Friday."
+
+**Phase B output:**
+
+```
+**Verdict.** Needs work. The headline number is an enabled figure standing in for adoption,
+and the ARR has no ramp applied, so the central claim is not yet decision-grade.
+**What this is.** A strategy decision asking the exec to make self-serve onboarding the
+default for new accounts.
+**What's working.** The recommendation is specific and reversible, and the author states the
+ask in the first two sentences, so the clarity check passes cleanly.
+**Data confidence.** Unsupported. The load-bearing claim, "62% have it enabled", measures
+provisioning, not use. The fix: pull the active-onboarding-completion event from Mixpanel
+with its denominator, for a named date.
+**Blocking issue.** "Enabled" is being read as "active". 62% enabled tells you nothing about
+whether accounts finish onboarding. An exec will reject a default-changing decision built on
+a provisioning number.
+**Action for me.** Send back to author.
+**Estimated read time.** 15 minutes.
+**Other fixes:**
+1. Apply the revenue ramp to the 1.2M. Year 1 recognises 40%, so the first-year figure is
+   nearer 480K. So that the ARR claim survives a finance challenge.
+2. Replace the February planning doc as the source. It cited a workshop, not data, so the
+   "early signs are strong" claim is Secondary hardened into Primary. So that the evidence
+   chain holds.
+```
+
 ## What this skill does not do
 
 - Does not rewrite the doc. The triage flags issues; the author fixes them.
-- Does not write to the KB. Output is ephemeral chat output. If the user wants the triage
-  saved, they ask separately and it goes to {{PERSONAL_CHANNEL_LOCATION}}, never to a
-  shared KB note.
+- Does not write to the knowledge base. Output is ephemeral chat output. If the user wants
+  the triage saved, they ask separately and it goes to their personal channel in Notion,
+  never to a shared note.
 - Does not run on a doc the user themselves wrote unless they explicitly ask. The user
   usually writes for thinking, not for forwarding; a rubric is the wrong tool for early
   drafts of their own work.
