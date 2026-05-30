@@ -68,7 +68,10 @@ Keep iterating in `aiotr-os/personal/skills/` first.
 # In aiotr-os: copy the skill to a scratch location
 cp -r personal/skills/<skill-name> /tmp/<skill-name>-public
 
-# Edit /tmp/<skill-name>-public/SKILL.md, redact per rules above
+# Edit /tmp/<skill-name>-public/SKILL.md: redact per rules above, AND bring it
+# into voice compliance (no em-dashes, no banned phrases or vocabulary). Source
+# skills grown in aiotr-os / the reference-design repo use em-dashes freely; this
+# repo does not, so the voice pass is a required promotion step, not optional.
 
 # Drop the cleaned version into this repo
 cp -r /tmp/<skill-name>-public aiotr-library/skills/<skill-name>
